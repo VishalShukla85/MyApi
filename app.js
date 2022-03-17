@@ -93,7 +93,7 @@ app.get("/paynow", [parseUrl, parseJson], (req, res) => {
 );
 
 
-app.post("/callback", (req, res) => {
+app.post("/callback", async (req, res) => {
   // Route for verifiying payment
 
   var body = '';
@@ -123,7 +123,7 @@ app.post("/callback", (req, res) => {
     checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
 
       params.CHECKSUMHASH = checksum;
-      post_data = 'JsonData=' + JSON.parse(params);
+      post_data = await 'JsonData=' + JSON.stringify(params);
 
       var options = {
         hostname: 'securegw-stage.paytm.in', // for staging

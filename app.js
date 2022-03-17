@@ -123,7 +123,7 @@ app.post("/callback", (req, res) => {
     checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
 
       params.CHECKSUMHASH = checksum;
-      post_data = 'JsonData=' + JSON.stringify(params);
+      post_data = 'JsonData=' + JSON.parse(params);
 
       var options = {
         hostname: 'securegw-stage.paytm.in', // for staging
